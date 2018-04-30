@@ -1,0 +1,42 @@
+#!/usr/bin/sh
+
+ROOT="$(cd "$( dirname "$0")"&& pwd  )"
+
+ERL=erl
+COOKIE=test_trnc
+NAME=test_trnc
+IP=172.16.38.131
+MOD=trnc_app
+INCLUDE_DIR=${ROOT}/include
+EBIN_DIR=${ROOT}/ebin
+LOGS_DIR=${ROOT}/logs
+
+start() {
+    cd ${EBIN_DIR}
+    $ERL -pa ${INCLUDE_DIR} -setcookie $COOKIE -name ${NAME}@$IP -s $MOD start -detached
+}
+
+help() {
+    echo "Usage: tctl args"
+    echo "args:"
+    echo "      h | --help: show this info"
+    echo "      start: start the application"
+    echo "      stop: stop the application"
+    echo ""
+}
+
+until [ $# -eq 0 ]
+do
+    case "$1" in
+        h | --help)
+            help
+            shift;;
+        start)
+            start
+            shift;;
+        *)
+            help
+            shift;;
+    esac
+done
+

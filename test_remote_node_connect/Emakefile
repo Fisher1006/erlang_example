@@ -1,0 +1,29 @@
+{   [
+    'src/*',
+    'src/*/*',
+    'src/*/*/*',
+    'src/*/*/*/*',
+    'src/*/*/*/*/*',
+    'gen-erl/*'
+    ],
+
+    [
+        {i, "include"},
+        {outdir, "ebin"},
+        debug_info
+    ]
+}.
+
+% trnc
+{   [
+    'trnc/src/*',
+    'trnc/src/*/*',
+    'trnc/src/*/*/*'
+    ],
+
+    [
+        {i, "trnc/include"},
+        {outdir, "trnc/ebin"},
+        debug_info
+    ]
+}.
